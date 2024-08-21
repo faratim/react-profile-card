@@ -74,7 +74,6 @@ function SkillList({ skills }) {
 }
 
 function Skill({ skill, color, level }) {
-  // const emoji = level === 'beginner' ? '👶' : level === 'intermediate' ? '👍' : level === 'advanced' ? '💪' : '👍';
   return (
     <div className="skill" style={ {backgroundColor: color} }>
       <span>{skill}</span>
