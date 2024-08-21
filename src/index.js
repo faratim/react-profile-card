@@ -2,13 +2,46 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA"
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D"
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF"
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33"
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB"
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00"
+  }
+];
+
 function App() {
   return (
     <div className="card">
       <Avatar />
       <div className="data">
         <Intro />
-        <SkillList />
+        <SkillList skills={skills}/>
       </div>
     </div>
   )
@@ -31,21 +64,26 @@ function Intro() {
   )
 }
 
-function SkillList(props) {
+function SkillList({ skills }) {
+
   return (
     <div className="skill-list">
-      <Skill skill='PHP 💪' backgroundColor='blue' fontColor='white'/>
-      <Skill skill='JavaScript 💪' backgroundColor='purple' fontColor='white'/>
-      <Skill skill='SQL 👍' backgroundColor='gray' fontColor='white'/>
-      <Skill skill='Family 💪' backgroundColor='lightgreen' fontColor='black'/>
-      <Skill skill='Pizza Eating 🍕' backgroundColor='teal' fontColor='white'/>
+      {skills.map(skill => <Skill skill={skill.skill} color={skill.color} level={skill.level} key={skill.skill} />)}
     </div>
   )
 }
 
-function Skill(props) {
+function Skill({ skill, color, level }) {
+  // const emoji = level === 'beginner' ? '👶' : level === 'intermediate' ? '👍' : level === 'advanced' ? '💪' : '👍';
   return (
-    <span className="skill" style={{backgroundColor: props.backgroundColor, color: props.fontColor}}>{props.skill}</span>
+    <div className="skill" style={ {backgroundColor: color} }>
+      <span>{skill}</span>
+      <span>
+        {level === 'beginner' && '👶'}
+        {level === 'intermediate' && '👍'}
+        {level === 'advanced' && '💪'}
+      </span>
+    </div>
   )
 }
 
@@ -57,3 +95,13 @@ root.render(
     <App />
   </StrictMode>
 );
+
+
+
+/* <div className="skill-list">
+      <Skill skill='PHP 💪' backgroundColor='blue' fontColor='white'/>
+      <Skill skill='JavaScript 💪' backgroundColor='purple' fontColor='white'/>
+      <Skill skill='SQL 👍' backgroundColor='gray' fontColor='white'/>
+      <Skill skill='Family 💪' backgroundColor='lightgreen' fontColor='black'/>
+      <Skill skill='Pizza Eating 🍕' backgroundColor='teal' fontColor='white'/>
+    </div> */
